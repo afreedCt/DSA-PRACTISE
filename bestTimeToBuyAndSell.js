@@ -15,12 +15,30 @@ var maxProfit = function(prices) {
 
 
     // optimal approach  
-    let bestBuy=prices[0];
-    let maxProfit=0;
-    for(let i=1;i<prices.length;i++){
-        maxProfit=Math.max(maxProfit,prices[i]-bestBuy)
-        bestBuy=Math.min(bestBuy,prices[i])
+    
+    // let bestBuy=prices[0];
+    // let maxProfit=0;
+    // for(let i=1;i<prices.length;i++){
+    //     maxProfit=Math.max(maxProfit,prices[i]-bestBuy)
+    //     bestBuy=Math.min(bestBuy,prices[i])
+    // }
+    // return maxProfit;
+
+    // two pointer approach
+    let left=0;
+    let right=1;
+    let profit=0;
+
+    while(right<prices.length){
+        if(prices[right]>prices[left]){
+            profit=Math.max(profit,prices[right]-prices[left])
+        }
+        else{
+            left=right;
+        }
+        right++;
     }
-    return maxProfit;
+    return profit;
+
 }
 console.log(maxProfit(prices));
